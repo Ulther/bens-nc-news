@@ -1,0 +1,57 @@
+.articleCardListItems {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0% 0% 3% 0%;
+  /* padding-left: 0%; */
+}
+
+.articleCardLink {
+  text-decoration: none;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.9);
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+}
+
+.articleCardTitle {
+  font-weight: bolder;
+  color: black;
+}
+
+.articleCardAuthor {
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+}
+
+.articleCardAuthorValue {
+  color: rgb(70, 70, 70);
+}
+
+.articleCardTopic {
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+}
+
+.articleCardTopicValue {
+  color: rgb(70, 70, 70);
+}
+
+.articleCardVotes {
+  font-weight: bold;
+  color: rgb(70, 70, 70);
+}
+
+.articleCardVotesValue {
+  color: rgb(70, 70, 70);
+}

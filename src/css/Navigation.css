@@ -1,0 +1,158 @@
+/* @media only screen and (max-width: 500px) {
+  body {
+    background: white;
+  }
+} */
+
+.navigationBar {
+  margin: 1%;
+  margin-bottom: 3%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  padding: 1% 1% 1% 1%;
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to left top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+  overflow: hidden;
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.9);
+  background: -webkit-radial-gradient(
+      center bottom,
+      white 0%,
+      rgba(160, 201, 215, 0) 80%
+    ),
+    -webkit-linear-gradient(top, rgb(255, 255, 205) 0%, rgb(255, 255, 255) 6%, rgb(
+            255,
+            255,
+            75
+          )
+          100%);
+  /* max-width: 700px; */
+  /* background: blue; */
+}
+
+.navigationBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 1% 10% 3% 10%;
+}
+
+.userBlock {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.navigationLink {
+  text-decoration: none;
+  color: rgb(70, 70, 70);
+  padding: 2% 5% 2% 5%;
+  font-size: 130%;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 rgb(255, 255, 175), 1px 1px 0 rgb(255, 255, 175),
+    -1px 0 0 black, 1px 0 0 black, 0 1px 5px rgba(0, 0, 0, 0.7);
+  /* background: blue; */
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+  padding: 2.5% 2% 2.5% 2%;
+  /* background: blue; */
+}
+
+.navigationBar a {
+  float: left;
+  font-size: 170%;
+  color: rgb(70, 70, 70);
+  text-align: center;
+  padding: 2.5% 2% 2.5% 2%;
+  text-decoration: none;
+}
+
+.dropdown .dropbtn {
+  font-weight: bold;
+  font-size: 170%;
+  border: none;
+  outline: none;
+  color: rgb(70, 70, 70);
+  /* padding: 14px 16px; */
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  text-shadow: -1px -1px 0 rgb(255, 255, 175), 1px 1px 0 rgb(255, 255, 175),
+    -1px 0 0 black, 1px 0 0 black, 0 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.navigationBar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: rgb(255, 255, 255);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgb(236, 236, 236);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.navigationBarUser {
+  justify-content: center;
+  font-size: 150%;
+  color: rgb(70, 70, 70);
+  text-align: center;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.9);
+  background: -webkit-radial-gradient(
+      center bottom,
+      white 0%,
+      rgba(160, 201, 215, 0) 80%
+    ),
+    -webkit-linear-gradient(top, rgb(255, 255, 205) 0%, rgb(255, 255, 255) 6%, rgb(
+            255,
+            255,
+            75
+          )
+          100%);
+  border-width: 5px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to left top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+  min-width: 330px;
+  max-width: 330px;
+  /* background: blue; */
+}

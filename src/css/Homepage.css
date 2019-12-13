@@ -1,0 +1,21 @@
+.homepageHeader {
+  margin: 1%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+  /* color: darkblue; */
+  padding: 5% 0% 5% 0%;
+  font-size: 200%;
+  background-color: lightgrey;
+}
+
+.homepageBody {
+  margin: 1%;
+  margin-bottom: 3%;
+  display: flex;
+  justify-content: center;
+  /* color: darkblue; */
+  padding: 5% 0% 5% 0%;
+  font-size: 150%;
+  background-color: lightgrey;
+}

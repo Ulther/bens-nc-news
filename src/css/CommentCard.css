@@ -1,0 +1,23 @@
+.commentCardListItems {
+  margin: 1%;
+  margin-bottom: 3%;
+  padding: 0% 0% 1% 0%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+  background-color: rgb(202, 202, 202);
+  background: -webkit-linear-gradient(
+    top,
+    rgb(221, 221, 221) 10%,
+    rgb(139, 139, 139) 130%
+  );
+}

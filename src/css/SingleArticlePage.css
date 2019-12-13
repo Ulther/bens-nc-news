@@ -1,0 +1,58 @@
+.singleArticleBlockMain {
+  margin: 1%;
+  margin-bottom: 3%;
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.9);
+  background-color: rgb(236, 236, 236);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+}
+
+.singleArticleTitle {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+.singleArticleBlockVotes {
+  margin: 1%;
+  margin-bottom: 3%;
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.9);
+  background-color: rgb(236, 236, 236);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+}
+
+.singleArticleBlockComments {
+  margin: 1%;
+  margin-bottom: 10%;
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.9);
+  background-color: rgb(236, 236, 236);
+  border-width: 1px;
+  border-style: solid;
+  border-image: linear-gradient(
+      to right top,
+      rgb(255, 255, 255),
+      rgb(255, 255, 75),
+      rgb(255, 255, 175),
+      rgb(255, 255, 75),
+      rgb(255, 255, 255)
+    )
+    1% round;
+}
