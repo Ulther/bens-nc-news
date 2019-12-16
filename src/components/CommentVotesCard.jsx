@@ -1,30 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import ErrorPage from "./ErrorPage";
 
 class CommentVotesCard extends Component {
   state = { votes: "", voteDifference: 0 };
 
-  patchVotes = voteChange => {
-    return axios
-      .patch(
-        `https://ulther-news-app.herokuapp.com/api/comments/${this.props.comment}`,
-        { inc_votes: voteChange }
-      )
-      .then(({ data }) => {
-        console.log("Total votes: ", data.comment.votes);
-        return data.comment;
-      });
-  };
-
-  handleVote = voteChange => {
-    this.patchVotes(voteChange).then(() => {
-      this.setState(currentState => {
-        return { voteDifference: currentState.voteDifference + voteChange };
-      });
-    });
-  };
-
   render() {
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
     return (
       <div className="buttonsBlock">
         <p>
@@ -54,6 +37,28 @@ class CommentVotesCard extends Component {
       </div>
     );
   }
+
+  patchVotes = voteChange => {
+    return axios
+      .patch(
+        `https://ulther-news-app.herokuapp.com/api/comments/${this.props.comment}`,
+        { inc_votes: voteChange }
+      )
+      .then(({ data }) => {
+        return data.comment;
+      })
+      .catch(({ response }) => {
+        this.setState({ err: { msg: response.data.msg || "Error" } });
+      });
+  };
+
+  handleVote = voteChange => {
+    this.patchVotes(voteChange).then(() => {
+      this.setState(currentState => {
+        return { voteDifference: currentState.voteDifference + voteChange };
+      });
+    });
+  };
 }
 
 export default CommentVotesCard;

@@ -5,8 +5,8 @@ class Sorter extends Component {
   state = { sortBy: "", topic: "" };
 
   handleSubmit = event => {
-    let sortValue = event.target.value;
-    let topicValue = this.props.topic;
+    const sortValue = event.target.value;
+    const topicValue = this.props.topic;
     event.preventDefault();
     this.props.getSortedArticles(sortValue, topicValue);
   };

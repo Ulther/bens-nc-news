@@ -3,7 +3,7 @@ import "../css/User.css";
 
 class User extends Component {
   render() {
-    let storedUsername = this.props.username;
+    const storedUsername = this.props.username;
     return (
       <div>
         <form className="userForm">

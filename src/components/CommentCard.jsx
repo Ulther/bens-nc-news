@@ -2,22 +2,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 import CommentVotesCard from "./CommentVotesCard";
+import ErrorPage from "./ErrorPage";
 import "../css/CommentCard.css";
 
 class CommentCard extends Component {
-  handleDelete = () => {
-    this.deleteComment(this.props.comment.comment_id);
-  };
-
-  deleteComment = comment => {
-    axios
-      .delete(`https://ulther-news-app.herokuapp.com/api/comments/${comment}`)
-      .then(() => {
-        this.props.getComments(this.props.comment.article_id);
-      });
-  };
-
+  state = { err: null };
   render() {
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
     const { comment } = this.props;
     return (
       <li className="commentCardListItems">
@@ -47,6 +39,25 @@ class CommentCard extends Component {
       </li>
     );
   }
+
+  handleDelete = () => {
+    const commentAuthor = this.props.comment.author;
+    const currentUser = this.props.username;
+    if (commentAuthor === currentUser) {
+      this.deleteComment(this.props.comment.comment_id);
+    }
+  };
+
+  deleteComment = comment => {
+    axios
+      .delete(`https://ulther-news-app.herokuapp.com/api/comments/${comment}`)
+      .then(() => {
+        this.props.getComments(this.props.comment.article_id);
+      })
+      .catch(({ response }) => {
+        this.setState({ err: { msg: response.data.msg || "Error" } });
+      });
+  };
 }
 
 export default CommentCard;

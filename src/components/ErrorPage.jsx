@@ -1,9 +1,12 @@
 import React from "react";
 
-const ErrorPage = () => {
+const ErrorPage = props => {
+  const { err } = props;
   return (
     <div>
-      <p>Error</p>
+      <p>
+        <font>Error: {err.msg}</font>
+      </p>
     </div>
   );
 };

@@ -10,15 +10,15 @@ const Navigation = props => {
         <Link className="navigationLink" to="/">
           Home
         </Link>
+        <Link className="navigationLink" to="/articles">
+          Articles
+        </Link>
         <div className="dropdown">
           <button className="dropbtn">
             Topics
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
-            <Link className="dropdownLink" to="/articles">
-              All Articles
-            </Link>
             <Link className="dropdownLink" to="/articles?topic=coding">
               Coding
             </Link>
@@ -32,9 +32,9 @@ const Navigation = props => {
         </div>
       </div>
       <div className="userBlock">
-      <div className="navigationBarUser">
-        <User username={props.username} />
-      </div>
+        <div className="navigationBarUser">
+          <User username={props.username} />
+        </div>
       </div>
     </nav>
   );

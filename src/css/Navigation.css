@@ -44,6 +44,7 @@
   flex-direction: row;
   justify-content: space-around;
   padding: 1% 10% 3% 10%;
+    /* background: blue; */
 }
 
 .userBlock {
@@ -72,7 +73,7 @@
 
 .navigationBar a {
   float: left;
-  font-size: 170%;
+  font-size: 150%;
   color: rgb(70, 70, 70);
   text-align: center;
   padding: 2.5% 2% 2.5% 2%;
@@ -81,7 +82,7 @@
 
 .dropdown .dropbtn {
   font-weight: bold;
-  font-size: 170%;
+  font-size: 150%;
   border: none;
   outline: none;
   color: rgb(70, 70, 70);

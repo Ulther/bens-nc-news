@@ -2,14 +2,17 @@ import React, { Component } from "react";
 import moment from "moment";
 import axios from "axios";
 import Loading from "./Loading";
-import "../css/SingleArticlePage.css";
+import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
 import ArticleVotesCard from "./ArticleVotesCard";
+import "../css/SingleArticlePage.css";
 
 class SingleArticlePage extends Component {
   state = { article: {}, isLoading: true };
 
   render() {
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
     const { article } = this.state;
     if (this.state.isLoading === true) {
       return <Loading />;
@@ -45,7 +48,10 @@ class SingleArticlePage extends Component {
           />
         </div>
         <div className="singleArticleBlockComments">
-          <CommentsList article={article.article_id} />
+          <CommentsList
+            article={article.article_id}
+            username={this.props.username}
+          />
         </div>
       </div>
     );
@@ -58,6 +64,9 @@ class SingleArticlePage extends Component {
       )
       .then(({ data }) => {
         this.setState({ article: data.article, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: { msg: response.data.msg || "Error" } });
       });
   };
 

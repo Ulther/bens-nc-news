@@ -3,12 +3,15 @@ import axios from "axios";
 import Loading from "./Loading";
 import Sorter from "./Sorter";
 import ArticleCard from "./ArticleCard";
+import ErrorPage from "./ErrorPage";
 import "../css/ArticlesList.css";
 
 class ArticlesList extends Component {
   state = { articles: [], isLoading: true, sortBy: null, topic: null };
 
   render() {
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
     if (this.state.isLoading === true) {
       return <Loading />;
     }
@@ -34,6 +37,9 @@ class ArticlesList extends Component {
       })
       .then(({ data }) => {
         this.setState({ articles: data.articles, isLoading: false });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: { msg: response.data.msg || "Error" } });
       });
   };
 
@@ -46,12 +52,15 @@ class ArticlesList extends Component {
           isLoading: false,
           topic: topicUrl || ""
         });
+      })
+      .catch(({ response }) => {
+        this.setState({ err: { msg: response.msg || "Error" } });
       });
   };
 
   componentDidMount = () => {
-    let path = this.props.path;
-    let search = this.props.location.search;
+    const path = this.props.path;
+    const search = this.props.location.search;
     let axiosUrl = "";
     let topicUrl = "";
     if (path === "/articles" && search === "?topic=coding") {
@@ -70,8 +79,8 @@ class ArticlesList extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    let path = this.props.path;
-    let search = this.props.location.search;
+    const path = this.props.path;
+    const search = this.props.location.search;
     let axiosUrl = "";
     let topicUrl = "";
     if (path === "/articles" && search === "?topic=coding") {
@@ -86,10 +95,7 @@ class ArticlesList extends Component {
       axiosUrl = "?topic=football";
       topicUrl = "football";
     }
-    if (
-      prevProps.path !== this.props.path ||
-      prevProps.location.search !== this.props.location.search
-    ) {
+    if (prevProps.path !== path || prevProps.location.search !== search) {
       axios
         .get(`https://ulther-news-app.herokuapp.com/api/articles${axiosUrl}`)
         .then(({ data }) => {

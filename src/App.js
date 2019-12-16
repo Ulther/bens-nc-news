@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 import Homepage from "./components/Homepage";
 import ArticlesList from "./components/ArticlesList";
 import SingleArticlePage from "./components/SingleArticlePage";
-// import ErrorPage from "./components/ErrorPage";
+import ErrorPage from "./components/ErrorPage";
 
 class App extends Component {
   state = { username: "jessjelly" };
@@ -19,9 +19,12 @@ class App extends Component {
         <Router primary={false}>
           <Homepage path="/" />
           <ArticlesList path="/articles" />
-          <SingleArticlePage path="/articles/:article_id" />
+          <SingleArticlePage
+            path="/articles/:article_id"
+            username={this.state.username}
+          />
+          <ErrorPage default />
         </Router>
-        {/* <ErrorPage default /> */}
       </div>
     );
   }
