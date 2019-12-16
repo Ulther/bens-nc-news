@@ -7,7 +7,7 @@ import ErrorPage from "./ErrorPage";
 import "../css/ArticlesList.css";
 
 class ArticlesList extends Component {
-  state = { articles: [], isLoading: true, sortBy: null, topic: null };
+  state = { articles: [], isLoading: true, sort_by: null, topic: null };
 
   render() {
     const { err } = this.state;
@@ -17,10 +17,7 @@ class ArticlesList extends Component {
     }
     return (
       <div className="articlesListPage">
-        <Sorter
-          getSortedArticles={this.getSortedArticles}
-          topic={this.state.topic}
-        />
+        <Sorter getArticles={this.getArticles} topic={this.state.topic} />
         <ul className="articlesUnorderedList">
           {this.state.articles.map(article => {
             return <ArticleCard article={article} key={article.article_id} />;
@@ -30,27 +27,18 @@ class ArticlesList extends Component {
     );
   }
 
-  getSortedArticles = (sort_by, topic) => {
-    axios
-      .get("https://ulther-news-app.herokuapp.com/api/articles", {
-        params: { sort_by: sort_by, topic: topic }
+  getArticles = (topicUrl, sort_by) => {
+    console.log("topic", topicUrl);
+    console.log("sort_by", sort_by);
+    return axios
+      .get(`https://ulther-news-app.herokuapp.com/api/articles`, {
+        params: { topic: topicUrl, sort_by: sort_by }
       })
-      .then(({ data }) => {
-        this.setState({ articles: data.articles, isLoading: false });
-      })
-      .catch(({ response }) => {
-        this.setState({ err: { msg: response.data.msg || "Error" } });
-      });
-  };
-
-  getArticles = (axiosUrl, topicUrl) => {
-    axios
-      .get(`https://ulther-news-app.herokuapp.com/api/articles${axiosUrl}`)
       .then(({ data }) => {
         this.setState({
           articles: data.articles,
           isLoading: false,
-          topic: topicUrl || ""
+          sort_by: sort_by || ""
         });
       })
       .catch(({ response }) => {
@@ -59,49 +47,28 @@ class ArticlesList extends Component {
   };
 
   componentDidMount = () => {
-    const path = this.props.path;
-    const search = this.props.location.search;
-    let axiosUrl = "";
-    let topicUrl = "";
-    if (path === "/articles" && search === "?topic=coding") {
-      axiosUrl = "?topic=coding";
-      topicUrl = "coding";
-    }
-    if (path === "/articles" && search === "?topic=cooking") {
-      axiosUrl = "?topic=cooking";
-      topicUrl = "cooking";
-    }
-    if (path === "/articles" && search === "?topic=football") {
-      axiosUrl = "?topic=football";
-      topicUrl = "football";
-    }
-    this.getArticles(axiosUrl, topicUrl);
+    return axios
+      .get(`https://ulther-news-app.herokuapp.com/api/articles`)
+      .then(({ data }) => {
+        this.setState({ articles: data.articles, isLoading: false });
+      });
   };
 
-  componentDidUpdate = prevProps => {
-    const path = this.props.path;
-    const search = this.props.location.search;
-    let axiosUrl = "";
-    let topicUrl = "";
-    if (path === "/articles" && search === "?topic=coding") {
-      axiosUrl = "?topic=coding";
-      topicUrl = "coding";
-    }
-    if (path === "/articles" && search === "?topic=cooking") {
-      axiosUrl = "?topic=cooking";
-      topicUrl = "cooking";
-    }
-    if (path === "/articles" && search === "?topic=football") {
-      axiosUrl = "?topic=football";
-      topicUrl = "football";
-    }
-    if (prevProps.path !== path || prevProps.location.search !== search) {
-      axios
-        .get(`https://ulther-news-app.herokuapp.com/api/articles${axiosUrl}`)
+  componentDidUpdate = (prevProps, prevState) => {
+    const topic = this.props.topic;
+    const sort_by = this.state.sort_by;
+    if (prevProps.topic !== topic || prevState.sort_by !== sort_by) {
+      return axios
+        .get(`https://ulther-news-app.herokuapp.com/api/articles`, {
+          params: { topic: topic, sort_by: sort_by }
+        })
         .then(({ data }) => {
-          this.setState({ articles: data.articles, isLoading: false });
+          this.setState({
+            articles: data.articles,
+            topic: data.articles[0].topic,
+            isLoading: false
+          });
         });
-      this.getArticles(axiosUrl, topicUrl);
     }
   };
 }

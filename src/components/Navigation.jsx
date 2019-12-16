@@ -19,13 +19,13 @@ const Navigation = props => {
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
-            <Link className="dropdownLink" to="/articles?topic=coding">
+            <Link className="dropdownLink" to="/articles/coding">
               Coding
             </Link>
-            <Link className="dropdownLink" to="/articles?topic=cooking">
+            <Link className="dropdownLink" to="/articles/cooking">
               Cooking
             </Link>
-            <Link className="dropdownLink" to="/articles?topic=football">
+            <Link className="dropdownLink" to="/articles/football">
               Football
             </Link>
           </div>

@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import "../css/Sorter.css";
 
 class Sorter extends Component {
-  state = { sortBy: "", topic: "" };
+  // state = { sortBy: "", topic: "" };
 
   handleSubmit = event => {
     const sortValue = event.target.value;
-    const topicValue = this.props.topic;
+    const topic = this.props.topic;
     event.preventDefault();
-    this.props.getSortedArticles(sortValue, topicValue);
+    this.props.getArticles(topic, sortValue);
   };
 
   render() {

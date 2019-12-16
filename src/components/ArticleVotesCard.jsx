@@ -22,6 +22,7 @@ class ArticleVotesCard extends Component {
           onClick={() => {
             this.handleVote(1);
           }}
+          // disable here
         >
           Upvote
         </button>
@@ -31,6 +32,7 @@ class ArticleVotesCard extends Component {
           onClick={() => {
             this.handleVote(-1);
           }}
+          // disable here
         >
           Downvote
         </button>

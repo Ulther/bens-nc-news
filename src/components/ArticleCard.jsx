@@ -6,7 +6,7 @@ const ArticleCard = props => {
   const { article } = props;
   return (
     <li className="articleCardListItems">
-      <Link className="articleCardLink" to={`/articles/${article.article_id}`}>
+      <Link className="articleCardLink" to={`/article/${article.article_id}`}>
         <p>
           <font className="articleCardTitle">{article.title}</font>
         </p>
