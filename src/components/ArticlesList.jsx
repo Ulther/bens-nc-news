@@ -28,8 +28,6 @@ class ArticlesList extends Component {
   }
 
   getArticles = (topicUrl, sort_by) => {
-    console.log("topic", topicUrl);
-    console.log("sort_by", sort_by);
     return axios
       .get(`https://ulther-news-app.herokuapp.com/api/articles`, {
         params: { topic: topicUrl, sort_by: sort_by }

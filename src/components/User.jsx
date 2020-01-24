@@ -11,7 +11,6 @@ class User extends Component {
             Username:
             <input
               className="userFormUsernameInput"
-              // value={"jessjelly"}
               type="text"
             ></input>
           </label>
