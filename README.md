@@ -1,6 +1,6 @@
 # Northcoders News - Front End
 
-Northcoders News is hosted on Heroku, it consists of a back end database and a front end web app. It is designed for the user to be able to access various news articles and their comments from the web.
+Northcoders News is hosted on Heroku, it consists of a back end database and a front end web app. It is designed for the user to be able to access various news articles and their comments from the web. Northcoders News was created using React.
 
 Heroku Hosting: https://bens-nc-news.herokuapp.com/
 
@@ -24,11 +24,18 @@ Start by cloning the repository onto your local machine, run in the terminal:
 git clone https://github.com/Ulther/bens-nc-news.git
 ```
 
+Then you will need to navigate to the route folder of the repository, run in the terminal:
+
+```
+cd bens-nc-news
+```
+
 Then you will need to install dependencies, in the route folder of the repository run in the terminal:
 
 ```
 npm install
 ```
+
 Then you will need to launch the app, in the route folder of the repository run in the terminal:
 
 ```

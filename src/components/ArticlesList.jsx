@@ -9,39 +9,22 @@ import "../css/ArticlesList.css";
 class ArticlesList extends Component {
   state = { articles: [], isLoading: true, sort_by: null, topic: null };
 
-  render() {
-    const { err } = this.state;
-    if (err) return <ErrorPage err={err} />;
-    if (this.state.isLoading === true) {
-      return <Loading />;
-    }
-    return (
-      <div className="articlesListPage">
-        <Sorter getArticles={this.getArticles} topic={this.state.topic} />
-        <ul className="articlesUnorderedList">
-          {this.state.articles.map(article => {
-            return <ArticleCard article={article} key={article.article_id} />;
-          })}
-        </ul>
-      </div>
-    );
-  }
-
-  getArticles = (topicUrl, sort_by) => {
-    return axios
-      .get(`https://ulther-news-app.herokuapp.com/api/articles`, {
-        params: { topic: topicUrl, sort_by: sort_by }
-      })
-      .then(({ data }) => {
-        this.setState({
-          articles: data.articles,
-          isLoading: false,
-          sort_by: sort_by || ""
-        });
-      })
-      .catch(({ response }) => {
-        this.setState({ err: { msg: response.msg || "Error" } });
+  getArticles = (topic, sort_by) => {
+    if (sort_by === null) {
+      return axios.get(`https://ulther-news-app.herokuapp.com/api/articles`, {
+        params: { topic: topic, sort_by: sort_by }
       });
+    } else {
+      return axios.get(`https://ulther-news-app.herokuapp.com/api/articles`, {
+        params: { topic: topic, sort_by: sort_by.sort_by }
+      });
+    }
+  };
+
+  sortArticles = sort_by => {
+    if (sort_by !== this.state.sort_by) {
+      this.setState({ sort_by: sort_by });
+    }
   };
 
   componentDidMount = () => {
@@ -56,19 +39,36 @@ class ArticlesList extends Component {
     const topic = this.props.topic;
     const sort_by = this.state.sort_by;
     if (prevProps.topic !== topic || prevState.sort_by !== sort_by) {
-      return axios
-        .get(`https://ulther-news-app.herokuapp.com/api/articles`, {
-          params: { topic: topic, sort_by: sort_by }
-        })
+      this.getArticles(topic, sort_by)
         .then(({ data }) => {
           this.setState({
             articles: data.articles,
-            topic: data.articles[0].topic,
             isLoading: false
           });
+        })
+        .catch(({ response }) => {
+          this.setState({ err: { msg: response.msg || "Error" } });
         });
     }
   };
+
+  render() {
+    const { err } = this.state;
+    if (err) return <ErrorPage err={err} />;
+    if (this.state.isLoading === true) {
+      return <Loading />;
+    }
+    return (
+      <div className="articlesListPage">
+        <Sorter sortArticles={this.sortArticles} topic={this.state.topic} />
+        <ul className="articlesUnorderedList">
+          {this.state.articles.map(article => {
+            return <ArticleCard article={article} key={article.article_id} />;
+          })}
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default ArticlesList;

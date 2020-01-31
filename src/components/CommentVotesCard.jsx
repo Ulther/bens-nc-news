@@ -3,7 +3,7 @@ import axios from "axios";
 import ErrorPage from "./ErrorPage";
 
 class CommentVotesCard extends Component {
-  state = { votes: "", voteDifference: 0 };
+  state = { voteDifference: 0 };
 
   render() {
     const { err } = this.state;

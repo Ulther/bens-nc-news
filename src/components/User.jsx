@@ -7,16 +7,6 @@ class User extends Component {
     return (
       <div>
         <form className="userForm">
-          <label className="userFormUsername">
-            Username:
-            <input
-              className="userFormUsernameInput"
-              type="text"
-            ></input>
-          </label>
-          <div className="userFormButtonBlock">
-            <button className="userFormButton">Login</button>
-          </div>
           <div className="userFormText">
             <font>Logged in as: </font>
             <font className="userFormTextUsername">{`${storedUsername}`}</font>
